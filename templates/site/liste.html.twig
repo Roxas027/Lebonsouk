@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnnonceController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+{% for key, value in annonce %}
+
+{{value.Nom}}<br>
+{{value.Contenu}}<br>
+{{value.DateCreation|date("d/m/y")}}<br>
+{{value.DateValidite|date("d/m/y")}}
+{% if show is defined %}
+{% for value2 in image %}
+<img src='{{ asset(""~value2.name) }}
+
+
+'>
+{% endfor %}
+{% endif %}
+<form action="/annonce/show/{{value.id}}" method="post">
+<input type="text" name="id" value={{value.id}} hidden>
+<button type="submit" name="save" class="btn btn-info btn-sm">Afficher</button></form>
+{% if app.user.id == value.userid %}
+<form action="/annonce/edit/{{value.id}}" method="post">
+<input type="text" name="id" value={{value.id}} hidden>
+<input type="text" name="iduser" value={{app.user.id}} hidden>
+<button type="submit" name="save" class="btn btn-info btn-sm">Editer</button></form>
+
+<form action="/annonce/delete/{{value.id}}" method="post">
+<input type="text" name="id" value={{value.id}} hidden>
+<input type="text" name="iduser" value={{app.user.id}} hidden>
+<button type="submit" name="save" class="btn btn-danger btn-sm">Effacer</button> 
+ <br></form>
+ {% endif %}
+
+{% endfor %}
+{% endblock %}

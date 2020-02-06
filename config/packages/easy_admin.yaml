@@ -1,0 +1,68 @@
+easy_admin:
+
+    
+    design:
+      brand_color: 'orange'
+      assets:
+        css:
+          - 'css/admin.css'
+    site_name: 'Le bon souk'
+    entities:
+      User:
+        class : App\Entity\User   
+        list:
+          title: 'Utilisateurs'
+          fields:
+            - { property: 'id', label: 'ID' }
+            - { property: 'username', label: "Nom d'utilisateur" }
+            - { property: 'email', label: 'Adresse email' }
+            - { property: 'roles', label: 'Rôles', type: 'array'}         
+        edit: 
+          title: 'Modifier utilisateur'
+          form_options: { validation_groups: ['Default'] }
+          fields:
+            - { property: 'username', label: "Nom d'utilisateur" }
+            - { property: 'email', label: 'Adresse email' }
+            - { property: 'roles', label: 'Rôles', type: 'collection' }
+
+      Rubrique:
+
+        class: App\Entity\Rubrique
+        form:
+          title: 'Modifier rubrique'
+          fields:
+            - { property: 'libelle', label: "Nom de rubrique" }
+        list:
+          title: 'Rubriques'
+          fields:
+            - { property: 'id', label: 'ID' }
+            - { property: 'libelle', label: 'Nom de la rubrique' }
+
+
+      Annonce:
+        class: App\Entity\Annonce
+        list:
+          title: 'Annonces'
+          fields:
+            - { property: 'id', label: 'ID Utilisateur' }
+            - { property: 'rubid', label: 'ID Rubrique' }
+            - { property: 'userid', label: 'ID Utilisateur' }
+            - { property: 'Nom', label: 'Nom' }
+            - { property: 'Contenu', label: 'Contenu' }
+            - { property: 'Date_creation', label: 'Date de publication' }
+            - { property: 'Date_Validite', label: 'Date de validité' }
+        new:
+          title: 'Créer annonce'
+          fields:
+            - { property: 'Nom', label: 'Nom' }
+            - { property: 'Contenu', label: 'Contenu' }
+            - { property: 'Date_creation', label: 'Date de publication' }
+            - { property: 'Date_Validite', label: 'Date de validité' }
+        edit:
+          title: 'Modifier annonce'
+          fields:
+            - { property: 'Nom', label: 'Nom' }
+            - { property: 'Contenu', label: 'Contenu' }
+            - { property: 'Date_creation', label: 'Date de publication' }
+            - { property: 'Date_Validite', label: 'Date de validité' }
+
